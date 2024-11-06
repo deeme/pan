@@ -78,10 +78,12 @@ export async function getPanoramaFlux({
   prompt,
   width,
   height,
+  model, // 新增模型参数
 }: {
   prompt: string
   width: number
   height: number
+  model: string // 新增模型参数类型
 }): Promise<string> {
   if (!prompt) {
     console.error(`无法在没有提示的情况下调用渲染API,正在中止..`)
@@ -124,13 +126,13 @@ export async function getPanoramaFlux({
     // 生成主图和填充图
     const [mainResponse, fillResponse] = await Promise.all([
       openai.images.generate({
-        model: "comic",
+        model: model, // 使用传入的模型参数
         prompt: fullPrompt + ", complete panoramic view",
         n: 1,
         size: size,
       }),
       openai.images.generate({
-        model: "comic",
+        model: model, // 使用传入的模型参数
         prompt: fullPrompt + ", extended view for panorama",
         n: 1,
         size: size,
