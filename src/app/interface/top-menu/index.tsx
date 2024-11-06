@@ -25,8 +25,6 @@ export function TopMenu() {
 
   const [draftPrompt, setDraftPrompt] = useState(requestedPrompt)
 
-  const [selectedModel, setSelectedModel] = useState("comic") // 新增状态用于存储选中的模型
-
   const handleSubmit = () => {
     const promptChanged = draftPrompt.trim() !== prompt.trim()
     if (!isLoading && (promptChanged)) {
