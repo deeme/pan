@@ -17,7 +17,7 @@ export const useStore = create<{
   isLoading: false,
   selectedModel: "comic", // 新增：默认选中的模型
   setSelectedModel: (model: string) => {
-    set({ selectedModel: model })
+    set({ model })
   },
   setLoading: (isLoading: boolean) => {
     set({ isLoading })
