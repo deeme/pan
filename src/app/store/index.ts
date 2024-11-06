@@ -16,6 +16,9 @@ export const useStore = create<{
   assetUrl: "",
   isLoading: false,
   selectedModel: "comic", // 新增：默认选中的模型
+  setSelectedModel: (model: string) => {
+    set({ selectedModel: model })
+  },
   setLoading: (isLoading: boolean) => {
     set({ isLoading })
   },
