@@ -7,15 +7,6 @@ import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 import { useStore } from "@/app/store"
 import { Button } from "@/components/ui/button"
-
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select"  // 确保路径正确
-
 export function TopMenu() {
   const prompt = useStore(s => s.prompt)
 
@@ -24,9 +15,6 @@ export function TopMenu() {
 
   const isLoading = useStore(s => s.isLoading)
   const setLoading = useStore(s => s.setLoading)
-
-  const selectedModel = useStore(s => s.selectedModel) // 新增：从状态获取选中的模型
-  const setSelectedModel = useStore(s => s.setSelectedModel) // 新增：从状态获取设置模型的函数
 
   const searchParams = useSearchParams()
 
@@ -94,32 +82,6 @@ export function TopMenu() {
           {isLoading ? 'Loading..' : '生成'}
         </Button>
         </div>
-
-{/* 新增模型选择下拉框 */}
-<Select
-value={selectedModel}
-onValueChange={setSelectedModel}
->
-<SelectTrigger className="w-[180px]">
-<SelectValue placeholder="选择模型" />
-</SelectTrigger>
-<SelectContent>
-<SelectItem value="dall-e-3">dall-e-3</SelectItem>
-<SelectItem value="fluxdev">fluxdev</SelectItem>
-<SelectItem value="fluxpro">fluxpro</SelectItem>
-<SelectItem value="flux">flux</SelectItem>
-<SelectItem value="sd35">sd35</SelectItem>
-<SelectItem value="sd3">sd3</SelectItem>
-<SelectItem value="comic">comic</SelectItem>
-<SelectItem value="sdxlpro">sdxlpro</SelectItem>
-<SelectItem value="sdxl">sdxl</SelectItem>
-<SelectItem value="sd2">sd2</SelectItem>
-<SelectItem value="智谱">智谱</SelectItem>
-<SelectItem value="通义">通义</SelectItem>
-<SelectItem value="星火">星火</SelectItem>
-</SelectContent>
-</Select>
-
       </div>
     </div>
   )
