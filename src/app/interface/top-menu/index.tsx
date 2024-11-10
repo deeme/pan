@@ -7,6 +7,15 @@ import { cn } from "@/lib/utils"
 import { Input } from "@/components/ui/input"
 import { useStore } from "@/app/store"
 import { Button } from "@/components/ui/button"
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select"  // 确保路径正确
+
 export function TopMenu() {
   const prompt = useStore(s => s.prompt)
 
