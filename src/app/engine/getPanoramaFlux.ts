@@ -128,14 +128,13 @@ export async function getPanoramaFlux({
   }
 }
 
-function determineImageSize(width: number, height: number): "1024x1024" | "768x1024" | "576x1024" | "512x1024" | "1024x576" | "768x512" {
+function determineImageSize(width: number, height: number): "1024x1024" | "256x256" | "512x512" | "1792x1024" | "1024x1792" | null | undefined {
   const sizes = [
     { size: "1024x1024", w: 1024, h: 1024 },
-    { size: "768x1024", w: 768, h: 1024 },
-    { size: "576x1024", w: 576, h: 1024 },
-    { size: "512x1024", w: 512, h: 1024 },
-    { size: "1024x576", w: 1024, h: 576 },
-    { size: "768x512", w: 768, h: 512 }
+    { size: "256x256", w: 256, h: 256 },
+    { size: "512x512", w: 512, h: 512 },
+    { size: "1792x1024", w: 1792, h: 1024 },
+    { size: "1024x1792", w: 1024, h: 1792 },
   ] as const;
 
   const bestSize = sizes.find(s => width <= s.w && height <= s.h) ?? sizes[0];
