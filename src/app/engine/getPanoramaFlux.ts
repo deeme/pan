@@ -99,7 +99,6 @@ export async function getPanoramaFlux({
         prompt: `${fullPrompt}, segment ${i+1} of ${segments}, consistent style and lighting`,
         n: 1,
         size: size,
-        seed: baseSeed + i,
       })
     );
 
