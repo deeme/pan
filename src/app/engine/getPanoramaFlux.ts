@@ -103,21 +103,31 @@ export async function getPanoramaFlux({
 
   console.log(`使用以下提示调用API: ${fullPrompt}`)
 
-  let size: "256x256" | "512x512" | "1024x1024" | "1792x1024" | "1024x1792" | null | undefined;
+  let size: "1024x1024" | "768x1024" | "576x1024" | "512x1024" | "1024x576" | "768x512" | null | undefined;
 
-  if (width <= 256 && height <= 256) {
-    size = "256x256";
-  } else if (width <= 512 && height <= 512) {
-    size = "512x512";
-  } else if (width <= 1024 && height <= 1024) {
-    size = "1024x1024";
-  } else if (width <= 1792 && height <= 1024) {
-    size = "1792x1024";
-  } else if (width <= 1024 && height <= 1792) {
-    size = "1024x1792";
+  // 从最高分辨率开始判断，优先选择更高分辨率
+  if (width <= 1024 && height <= 1024) {
+      size = "1024x1024";  // 最大分辨率 1024x1024
+  } else if (width <= 768 && height <= 1024) {
+      size = "768x1024";   // 竖向较大
+  } else if (width <= 576 && height <= 1024) {
+      size = "576x1024";   // 竖向较大
+  } else if (width <= 512 && height <= 1024) {
+      size = "512x1024";   // 竖向较大
+  } else if (width <= 1024 && height <= 576) {
+      size = "1024x576";   // 横向较大
+  } else if (width <= 768 && height <= 512) {
+      size = "768x512";    // 横向较大
   } else {
-    // 如果尺寸超出预定义范围，可以选择最大尺寸或返回 null
-    size = "1024x1792"; // 或 null
+      // 如果尺寸超出预定义范围，根据宽高比选择最合适的分辨率
+      const aspectRatio = width / height;
+      if (aspectRatio >= 1) {
+          // 宽度大于等于高度，选择横向分辨率
+          size = "1024x576";
+      } else {
+          // 高度大于宽度，选择竖向分辨率
+          size = "768x1024";
+      }
   }
 
   try {
