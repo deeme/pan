@@ -119,15 +119,8 @@ export async function getPanoramaFlux({
   } else if (width <= 768 && height <= 512) {
       size = "768x512";    // 横向较大
   } else {
-      // 如果尺寸超出预定义范围，根据宽高比选择最合适的分辨率
-      const aspectRatio = width / height;
-      if (aspectRatio >= 1) {
-          // 宽度大于等于高度，选择横向分辨率
-          size = "1024x576";
-      } else {
-          // 高度大于宽度，选择竖向分辨率
-          size = "768x1024";
-      }
+    // 如果尺寸超出预定义范围，可以选择最大尺寸或返回 null
+    size = "1024x1024"; // 或 null
   }
 
   try {
